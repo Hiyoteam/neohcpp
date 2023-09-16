@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>hack.chat</title>
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="src/style.css">
+  <link id="scheme-link" rel="stylesheet" href="schemes/atelier-dune.css">
+  
+  <audio style="display: none" id="notify-sound" preload="auto" src="audio/notify.mp3">
+    <source src="audio/notify.mp3" type="audio/ogg">
+  </audio>
+</head>
+
+<body>
+  <article class="container">
+    <div id="messages" class="messages"></div>
+  </article>
+  <footer id="footer">
+    <div class="container">
+      <form id="chatform" class="message">
+        <textarea id="chatinput" type="text" autocomplete="off" autofocus></textarea>
+      </form>
+    </div>
+  </footer>
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>

@@ -7,22 +7,22 @@ const scrollToBottom = () => {
 }
 
 /**
- * @param {string} selectors 
- * @returns {Element|null}
+ * @param {string} selectors
+ * @returns {Element|HTMLElement|null}
  */
 const $css = (selectors) => {
   return document.querySelector(selectors)
 }
 
 /**
- * @param {string} elementId 
+ * @param {string} elementId
  * @returns {HTMLElement|null}
  */
 const $id = (elementId) => {
   return document.getElementById(elementId)
 }
 /**
- * @param {string} key 
+ * @param {string} key
  * @returns {any}
  */
 const localStorageGet = (key) => {
@@ -33,8 +33,8 @@ const localStorageGet = (key) => {
 }
 
 /**
- * @param {string} key 
- * @param {any} value 
+ * @param {string} key
+ * @param {any} value
  */
 const localStorageSet = (key, value) => {
   window.localStorage[key] = JSON.stringify(value)

@@ -1,33 +1,33 @@
 import { input, footer, messagesEl } from "./html"
 import { createRenderer } from "./markdown"
 import { isAtBottom, scrollToBottom } from "./utils"
-import { updateInputSize, insertAtCursor, backspaceAtCursor } from "./uiutils"
-import { $ } from "./v"
+import { updateInputSize, insertAtCursor, backspaceAtCursor } from "./ui_utils"
+import { html } from "./ui_utils"
 
 const md = createRenderer()
 
-let windowActive = false
-
-let unread = 0
+/**
+ * @param {string} markdown
+ * @returns {string}
+ */
+const render = (markdown) => md.render(markdown)
 
 const updateTitle = () => {
-  /** @type {string} */
-  const myChannel = $.myChannel
-
   const isFrontPage = myChannel === ''
 
   if (isFrontPage || (windowActive && isAtBottom())) {
     unread = 0
   }
 
-  const title = isFrontPage ?
-    "hack.chat++"
-    : (
-      unread > 0 ?
-        `(${unread}) ${myChannel} - hack.chat++`
-        :
-        `${myChannel} - hack.chat++`
-    )
+  const title = (() => {
+    if (isFrontPage) {
+      return "hack.chat++"
+    }
+    if (unread > 0) {
+      return `(${unread}) ${myChannel} - hack.chat++`
+    }
+    return `${myChannel} - hack.chat++`
+  })()
 
   document.title = title
 }
@@ -48,21 +48,16 @@ window.addEventListener("scroll", () => {
 })
 
 /**
- * @typedef Msg
- * @type {import("./engine").Msg}
+ * @param {Msg} args
+ * @param {HTMLElement?} target
  */
-
-/**
- * @param {Msg} args 
- * @param {HTMLElement?} element 
- */
-const displayMessage = (args, element = null) => {
+const displayMessage = (args, { target = null }) => {
   // Message container
   const messageEl = document.createElement('div')
 
   messageEl.classList.add('message')
 
-  if (args.nick === $.myNick) {
+  if (args.nick === myNick) {
     messageEl.classList.add('me')
   } else if (args.nick === '!') {
     messageEl.classList.add('warn')
@@ -92,7 +87,7 @@ const displayMessage = (args, element = null) => {
 
     nickLinkEl.onclick = function () {
       insertAtCursor("@" + args.nick + ' ')
-      $('#chatinput').focus()
+      input.focus()
     }
 
     const date = new Date(args.time || Date.now())
@@ -103,16 +98,20 @@ const displayMessage = (args, element = null) => {
   // Text
   const textEl = document.createElement('p')
   textEl.classList.add('text')
-  textEl.innerHTML = md.render(args.text)
+  if (args[html]) {
+    textEl.innerHTML = args[html]
+  } else {
+    textEl.innerHTML = md.render(args.text)
+  }
 
   messageEl.appendChild(textEl)
 
   const wasAtBottom = isAtBottom()
 
-  if (!element) {
+  if (!target) {
     messagesEl.appendChild(messageEl)
   } else {
-    element.replaceWith(messageEl)
+    target.replaceWith(messageEl)
   }
 
   if (wasAtBottom) {
@@ -125,8 +124,6 @@ let lastSentPos = 0
 
 const inputActions = {
   send() {
-    /** @type {import("./engine").Engine} */
-    const engine = $.engine
 
     /** @type {function(Msg):void} */
     const pushMessage = $.pushMessage
@@ -178,9 +175,6 @@ const inputActions = {
 
     let autocompletedNick = false
 
-    /** @type {string[]} */
-    const onlineUsers = $.onlineUsers
-
     if (index >= 1 && index === pos - 1 && text.slice(index - 1, pos).match(/^@@$/)) {
       autocompletedNick = true
       backspaceAtCursor(1)
@@ -223,7 +217,7 @@ const inputActions = {
 }
 
 /**
- * @param {KeyboardEvent} e 
+ * @param {KeyboardEvent} e
  */
 const inputActionsHandler = (e) => {
   if (e.key == "Enter" && !e.shiftKey) {
@@ -266,4 +260,4 @@ const inputActionsHandler = (e) => {
   }
 }
 
-export { displayMessage, inputActionsHandler }
+export { render, displayMessage, inputActionsHandler }

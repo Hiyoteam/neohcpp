@@ -6,7 +6,7 @@ import remarkableKatex from 'remarkable-katex'
 import { isAtBottom } from './utils'
 
 /**
- * @param {string} link 
+ * @param {string} link
  * @returns {string}
  */
 const getDomain = (link) => (
@@ -14,11 +14,11 @@ const getDomain = (link) => (
 )
 
 /**
- * @param {string} link 
+ * @param {string} link
  * @returns {boolean}
  */
 const isWhiteListed = (link) => {
-  return $.imgHostWhitelist.indexOf(getDomain(link)) !== -1
+  return imgHostWhitelist.indexOf(getDomain(link)) !== -1
 }
 
 const createRenderer = () => {
@@ -56,7 +56,7 @@ const createRenderer = () => {
   md.renderer.rules.image = (tokens, idx, options) => {
     const src = utils.escapeHtml(tokens[idx].src)
 
-    if (isWhiteListed(src) && $.allowImages) {
+    if (isWhiteListed(src) && allowImages) {
       const imgSrc = ' src="' + utils.escapeHtml(tokens[idx].src) + '"'
       const title = tokens[idx].title ? (' title="' + utils.escapeHtml(utils.replaceEntities(tokens[idx].title)) + '"') : ''
       const alt = ' alt="' + (tokens[idx].alt ? utils.escapeHtml(utils.replaceEntities(utils.unescapeMd(tokens[idx].alt))) : '') + '"'

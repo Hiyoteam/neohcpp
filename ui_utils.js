@@ -14,7 +14,7 @@ const updateInputSize = () => {
 }
 
 /**
- * @param {string} text 
+ * @param {string} text
  */
 const insertAtCursor = (text) => {
   const start = input.selectionStart || 0
@@ -40,4 +40,6 @@ const backspaceAtCursor = (length = 0) => {
   updateInputSize()
 }
 
-export { updateInputSize, insertAtCursor, backspaceAtCursor }
+const html = Symbol("html")
+
+export { updateInputSize, insertAtCursor, backspaceAtCursor, html }

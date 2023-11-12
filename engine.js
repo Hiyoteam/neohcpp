@@ -64,7 +64,7 @@ class Engine extends EventEmitter {
   channel
 
   /**
-   * @param {string} ws_url 
+   * @param {string} ws_url
    */
   constructor(ws_url) {
     super()
@@ -74,7 +74,7 @@ class Engine extends EventEmitter {
   }
 
   /**
-   * @param {Payload} data 
+   * @param {Payload} data
    */
   send(data) {
     this.ws.send(JSON.stringify(data))
@@ -103,8 +103,8 @@ class Engine extends EventEmitter {
   }
 
   /**
-   * @param {string} channel 
-   * @param {string} nick 
+   * @param {string} channel
+   * @param {string} nick
    */
   async join(channel, nick) {
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {

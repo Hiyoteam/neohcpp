@@ -15,10 +15,21 @@ This project is powered by Vite.
 ## TODOs
 
 - [x] LocalStorage Save Nick
+- [ ] Render Nick Color
 - [ ] Reply and @ Mention
+- [ ] Favicon
 - [ ] FrontPage
 - [ ] Sidebar
 - [ ] Config Manager
 
+- [ ] More Graceful i18n
 - [ ] Plugin API
 - [ ] More Flexible CSS
+
+## Goals
+
+- Small core, no useless features
+- Easy to extend
+- Easy to customize
+- Powerful plugins
+- Modern design

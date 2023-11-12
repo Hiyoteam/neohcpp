@@ -6,7 +6,7 @@ import { updateInputSize, updateTitle } from "./ui_utils"
 import { inputActionsHandler } from "./input"
 import { pushMessage } from "./client"
 
-myChannel = location.search.replace("?", "")
+myChannel = location.search.replace(/^\?/, "")
 
 window.addEventListener("scroll", () => {
   if (isAtBottom()) {

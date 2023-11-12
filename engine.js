@@ -27,6 +27,7 @@ import EventEmitter from 'eventemitter3'
  * @property {string[]} [nicks]
  * 
  * @property {string?} [time]
+ * @property {string?} [color]
  * 
  * @property {boolean} [admin]
  * @property {boolean} [mod]

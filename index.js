@@ -20,6 +20,15 @@ input.addEventListener('input', updateInputSize)
 
 input.addEventListener('keydown', inputActionsHandler)
 
+//https://github.com/hack-chat/main/pull/184
+//select "chatinput" on "/"
+document.addEventListener("keydown", (e) => {
+  if (e.key === '/' && input != document.activeElement) {
+    e.preventDefault()
+    input.focus()
+  }
+})
+
 if (myChannel) {
   await engine.connect()
 

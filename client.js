@@ -3,7 +3,7 @@
  */
 
 import { Commands, Engine, Events } from "./engine"
-import { displayMessage, renderMarkdown } from "./renderMessage"
+import { renderMessage, renderMarkdown } from "./renderMessage"
 
 engine = new Engine("wss://hack.chat/chat-ws")
 
@@ -14,7 +14,25 @@ engine = new Engine("wss://hack.chat/chat-ws")
  * @param {RenderMode} options.renderMode
  */
 const pushMessage = (args, { target, renderMode } = {}) => {
-  displayMessage(args, { target, renderMode })
+  let id = globalId
+  globalId++
+
+  messages[id] = {
+    id,
+    args,
+  }
+  let messageEl = renderMessage(args, { target, renderMode })
+  messageEl.id = `message_${id}`
+
+  messages[id].element = messageEl
+
+  const wasAtBottom = isAtBottom()
+
+  messagesEl.appendChild(messageEl)
+
+  if (wasAtBottom) {
+    scrollToBottom()
+  }
 }
 
 engine.on(Commands.chat, (args) => {

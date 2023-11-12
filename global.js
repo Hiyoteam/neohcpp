@@ -1,8 +1,40 @@
+/**
+ * @typedef Msg
+ * @type {import("./engine").Msg}
+ */
+
+/**
+ * @typedef Payload
+ * @type {import("./engine").Payload}
+ */
+
+/**
+ * @typedef Callback
+ * @type {import("./engine").Callback}
+ */
+
+/**
+ * @typedef RenderMode
+ * @type {import("./renderMessage").RenderMode}
+ */
+
+/**
+ * @typedef MsgInfo
+ * @type {{
+ *  id: number,
+ *  args: Msg,
+ *  element: HTMLElement?
+ * }}
+ */
+
+
 /** @type {string?} */
 let myChannel
 
 /** @type {string?} */
 let myNick
+
+const myNickName = () => myNick.split('#')[0]
 
 /** @type {import('./engine').Engine?} */
 let engine
@@ -16,6 +48,11 @@ let onlineUsers
 let allowImages = false
 
 let unread = 0
+
+let globalId = 0
+
+/** @type {{[_:number]:MsgInfo}} */
+let messages = {}
 
 
 const isAtBottom = () => (
@@ -73,23 +110,3 @@ const messagesEl = $id("messages")
 
 /** @type {HTMLDivElement} */
 const usersEl = $id("users")
-
-/**
- * @typedef Msg
- * @type {import("./engine").Msg}
- */
-
-/**
- * @typedef Payload
- * @type {import("./engine").Payload}
- */
-
-/**
- * @typedef Callback
- * @type {import("./engine").Callback}
- */
-
-/**
- * @typedef RenderMode
- * @type {import("./renderMessage").RenderMode}
- */

@@ -1,4 +1,5 @@
 import { createRenderer } from "./markdown"
+import { insertAtCursor } from "./ui_utils"
 
 const md = createRenderer()
 
@@ -37,10 +38,9 @@ const renderMarkdown = (markup, { mode = RenderModes.default } = {}) => {
 /**
  * @param {Msg} args
  * @param {object} options
- * @param {HTMLElement?} options.target
  * @param {RenderMode} options.renderMode
  */
-const displayMessage = (args, { target = null, renderMode = RenderModes.default } = {}) => {
+const renderMessage = (args, { renderMode = RenderModes.default } = {}) => {
 
   // Message container
   const messageEl = document.createElement('div')
@@ -75,14 +75,80 @@ const displayMessage = (args, { target = null, renderMode = RenderModes.default 
     const nickLinkEl = document.createElement('a')
     nickLinkEl.textContent = args.nick
 
-    nickLinkEl.onclick = function () {
-      insertAtCursor("@" + args.nick + ' ')
-      input.focus()
-    }
-
     const date = new Date(args.time || Date.now())
     nickLinkEl.title = date.toLocaleString()
     nickSpanEl.appendChild(nickLinkEl)
+
+    if (args.color && /(^[0-9A-F]{6}$)|(^[0-9A-F]{3}$)/i.test(args.color)) {
+      nickLinkEl.style.color = `#${args.color}`
+    } else if (args.nick === 'jeb_') {
+      nickLinkEl.classList.add('jebbed')
+    }
+
+    nickLinkEl.addEventListener('click', () => {
+      // Reply to a whisper or info is meaningless
+      if (args.type === 'whisper' || args.nick === '*' || args.nick === '!') {
+        insertAtCursor(args.text)
+      } else {
+        insertAtCursor(`@${args.nick} `)
+      }
+      input.focus()
+    })
+
+    nickLinkEl.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+
+      let replyText = ''
+      let isOverLong = false
+
+      // Cut overlong text
+      if (args.text.length > 350) {
+        replyText = args.text.slice(0, 350)
+        isOverLong = true
+      }
+
+      // Add nickname
+      if (args.trip) {
+        replyText = '>' + args.trip + ' ' + args.nick + '：\n'
+      } else {
+        replyText = '>' + args.nick + '：\n'
+      }
+
+      // Split text by line
+      let lines = args.text.split('\n')
+
+      // Cut overlong lines
+      if (lines.length >= 8) {
+        lines = lines.slice(0, 8)
+        overlongText = true
+      }
+
+      for (let replyLine of lines) {
+        // Cut third replied text
+        if (!replyLine.startsWith('>>')) {
+          replyText += '>' + replyLine + '\n'
+        }
+      }
+
+      // Add elipsis if text is cutted
+      if (isOverLong) {
+        replyText += '>……\n'
+      }
+      replyText += '\n'
+
+
+      // Add mention when reply to others
+      if (args.nick != myNickName() && args.type != 'whisper' && args.nick != '*' && args.nick != '!') {
+        replyText += `@${args.nick} `
+      }
+
+      // Insert reply text
+      replyText += input.value
+
+      input.value = ''
+      insertAtCursor(replyText)
+      input.focus()
+    })
   }
 
   // Text
@@ -99,17 +165,7 @@ const displayMessage = (args, { target = null, renderMode = RenderModes.default 
 
   messageEl.appendChild(textEl)
 
-  const wasAtBottom = isAtBottom()
-
-  if (!target) {
-    messagesEl.appendChild(messageEl)
-  } else {
-    target.replaceWith(messageEl)
-  }
-
-  if (wasAtBottom) {
-    scrollToBottom()
-  }
+  return messageEl
 }
 
-export { RenderModes, renderMarkdown, displayMessage }
+export { RenderModes, renderMarkdown, renderMessage }

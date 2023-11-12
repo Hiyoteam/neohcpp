@@ -63,8 +63,8 @@ const inputActions = {
       if (lastMentioned.length > 0) {
         insertAtCursor(lastMentioned + ' ')
       } else {
-        insertAtCursor(myNick.split('#')[0] + ' ')
-        lastMentioned = myNick.split('#')[0]
+        insertAtCursor(myNickName() + ' ')
+        lastMentioned = myNickName()
       }
     } else if (index >= 0) {
       const stub = text.substring(index + 1, pos)
@@ -99,7 +99,7 @@ const inputActions = {
  * @param {KeyboardEvent} e
  */
 const inputActionsHandler = (e) => {
-  if (e.key == "Enter" && !e.shiftKey) {
+  if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault()
 
     inputActions.send()

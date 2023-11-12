@@ -1,5 +1,4 @@
 import { createRenderer } from "./markdown"
-import { messagesEl } from "./html"
 
 const md = createRenderer()
 
@@ -20,7 +19,7 @@ const RenderModes = Object.freeze({
  * @param {object} options
  * @param {RenderMode} options.mode
  */
-const renderMarkdown = (markup, { mode }) => {
+const renderMarkdown = (markup, { mode = RenderModes.default } = {}) => {
   if (mode === RenderModes.default) {
     return md.render(markup)
   } else if (mode === RenderModes.allowHTML) {
@@ -41,10 +40,7 @@ const renderMarkdown = (markup, { mode }) => {
  * @param {HTMLElement?} options.target
  * @param {RenderMode} options.renderMode
  */
-const displayMessage = (args, { target, renderMode }) => {
-
-  let target = target ?? null
-  let renderMode = renderMode ?? RenderModes.default
+const displayMessage = (args, { target = null, renderMode = RenderModes.default } = {}) => {
 
   // Message container
   const messageEl = document.createElement('div')
@@ -65,7 +61,7 @@ const displayMessage = (args, { target, renderMode }) => {
 
   // Nickname
   const nickSpanEl = document.createElement('span')
-  nickSpanEl.classList.add('nick')
+  nickSpanEl.classList.add('nick', 'chat-nick')
   messageEl.appendChild(nickSpanEl)
 
   if (args.trip) {

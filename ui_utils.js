@@ -1,6 +1,3 @@
-import { input, footer } from "./html"
-import { isAtBottom, scrollToBottom } from "./utils"
-
 const updateInputSize = () => {
   const wasAtBottom = isAtBottom()
 

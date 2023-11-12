@@ -40,5 +40,3 @@ const localStorageGet = (key) => {
 const localStorageSet = (key, value) => {
   window.localStorage[key] = JSON.stringify(value)
 }
-
-export { isAtBottom, scrollToBottom, $css, $id, localStorageGet, localStorageSet }

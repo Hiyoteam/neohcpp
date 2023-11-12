@@ -1,5 +1,5 @@
 import { Commands, Engine, Events } from "./engine"
-import { displayMessage, render } from "./renderMessage"
+import { displayMessage, renderMarkdown } from "./renderMessage"
 
 engine = new Engine("wss://hack.chat/chat-ws")
 
@@ -9,7 +9,7 @@ engine = new Engine("wss://hack.chat/chat-ws")
  * @param {HTMLElement?} options.target
  * @param {RenderMode} options.renderMode
  */
-const pushMessage = (args, { target, renderMode }) => {
+const pushMessage = (args, { target, renderMode } = {}) => {
   displayMessage(args, { target, renderMode })
 }
 
@@ -35,19 +35,11 @@ engine.on(Commands.onlineSet, (args) => {
       return nick // such nicknames made up of only underlines will be rendered into a horizontal rule. 
     }
     const div = document.createElement('div')
-    div.innerHTML = render(nick)
+    div.innerHTML = renderMarkdown(nick)
     return div.firstChild.innerHTML
   })
 
   pushMessage({ nick: '*', "text": "Users online: " + nicksHTML.join(", ") }, { renderMode: "onlyHTML" })
-})
-
-engine.on(Commands.chat, (args) => {
-  pushMessage(args)
-})
-
-engine.on(Commands.chat, (args) => {
-  pushMessage(args)
 })
 
 export { pushMessage }

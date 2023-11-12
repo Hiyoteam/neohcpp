@@ -3,8 +3,6 @@ import { linkify } from 'remarkable/linkify'
 import hljs from 'highlight.js'
 import remarkableKatex from 'remarkable-katex'
 
-import { isAtBottom } from './utils'
-
 /**
  * @param {string} link
  * @returns {string}

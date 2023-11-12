@@ -1,7 +1,6 @@
-import { isAtBottom } from "./utils"
-import { updateTitle } from "./ui_utils"
+import { updateInputSize, updateTitle } from "./ui_utils"
 import { inputActionsHandler } from "./input"
-import { input } from "./html"
+import { pushMessage } from "./client"
 
 myChannel = location.search.replace("?", "")
 
@@ -10,6 +9,10 @@ window.addEventListener("scroll", () => {
     updateTitle()
   }
 })
+
+updateInputSize()
+
+input.addEventListener('input', updateInputSize)
 
 input.addEventListener('keydown', inputActionsHandler)
 

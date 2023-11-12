@@ -13,8 +13,6 @@ let imgHostWhitelist
 /** @type {string[]?} */
 let onlineUsers
 
-let windowActive = false
-
 let allowImages = false
 
 let unread = 0

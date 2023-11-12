@@ -1,7 +1,6 @@
 import { Commands, Engine, Events } from "./engine"
-import { input } from "./html"
-import { displayMessage, inputActionsHandler, render } from "./ui"
-import { html, updateInputSize } from "./ui_utils"
+import { displayMessage, render } from "./ui_utils"
+import { html } from "./ui_utils"
 
 myChannel = location.search.replace("?", "")
 
@@ -51,9 +50,7 @@ engine.on(Commands.chat, (args) => {
   pushMessage(args)
 })
 
-input.addEventListener("input", updateInputSize)
-
-input.addEventListener("keydown", inputActionsHandler)
+export { pushMessage }
 
 if (myChannel) {
   await engine.connect()

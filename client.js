@@ -1,16 +1,16 @@
 import { Commands, Engine, Events } from "./engine"
-import { displayMessage, render } from "./ui_utils"
-import { html } from "./ui_utils"
-
-myChannel = location.search.replace("?", "")
+import { displayMessage, render } from "./renderMessage"
 
 engine = new Engine("wss://hack.chat/chat-ws")
 
 /**
  * @param {Msg} args
+ * @param {object} options
+ * @param {HTMLElement?} options.target
+ * @param {RenderMode} options.renderMode
  */
-const pushMessage = (args) => {
-  displayMessage(args)
+const pushMessage = (args, { target, renderMode }) => {
+  displayMessage(args, { target, renderMode })
 }
 
 engine.on(Commands.chat, (args) => {
@@ -39,7 +39,7 @@ engine.on(Commands.onlineSet, (args) => {
     return div.firstChild.innerHTML
   })
 
-  pushMessage({ nick: '*', [html]: "Users online: " + nicksHTML.join(", ") })
+  pushMessage({ nick: '*', "text": "Users online: " + nicksHTML.join(", ") }, { renderMode: "onlyHTML" })
 })
 
 engine.on(Commands.chat, (args) => {
@@ -51,17 +51,3 @@ engine.on(Commands.chat, (args) => {
 })
 
 export { pushMessage }
-
-if (myChannel) {
-  await engine.connect()
-
-  myNick = prompt("Nickname:")
-
-  if (!myNick) {
-    engine.close()
-  } else {
-    await engine.join(myChannel, myNick)
-  }
-} else {
-  pushMessage({ text: "Temporary Frontpage" })
-}

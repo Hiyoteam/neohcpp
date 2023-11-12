@@ -31,3 +31,8 @@ let unread = 0
  * @typedef Callback
  * @type {import("./engine").Callback}
  */
+
+/**
+ * @typedef RenderMode
+ * @type {import("./renderMessage").RenderMode}
+ */

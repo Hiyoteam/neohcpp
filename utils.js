@@ -21,6 +21,7 @@ const $css = (selectors) => {
 const $id = (elementId) => {
   return document.getElementById(elementId)
 }
+
 /**
  * @param {string} key
  * @returns {any}

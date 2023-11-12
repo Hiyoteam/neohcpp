@@ -1,3 +1,7 @@
+/**
+ * Manages client states.
+ */
+
 import { Commands, Engine, Events } from "./engine"
 import { displayMessage, renderMarkdown } from "./renderMessage"
 

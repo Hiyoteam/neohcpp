@@ -1,3 +1,7 @@
+/**
+ * Abstraction of WebSocket connection.
+ */
+
 import EventEmitter from 'eventemitter3'
 
 /**

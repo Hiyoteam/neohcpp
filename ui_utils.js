@@ -1,3 +1,7 @@
+/**
+ * Utils used for UI.
+ */
+
 const updateInputSize = () => {
   const wasAtBottom = isAtBottom()
 

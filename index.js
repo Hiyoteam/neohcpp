@@ -1,3 +1,7 @@
+/**
+ * Entry of NeoHC++, sets up UI.
+ */
+
 import { updateInputSize, updateTitle } from "./ui_utils"
 import { inputActionsHandler } from "./input"
 import { pushMessage } from "./client"

@@ -110,3 +110,15 @@ const messagesEl = $id("messages")
 
 /** @type {HTMLDivElement} */
 const usersEl = $id("users")
+
+/** @type {HTMLDivElement} */
+const sidebar = $id("sidebar")
+
+let isDebug
+
+if (location.hash === '#debug') {
+  const script = document.createElement('script')
+  script.src="https://cdn.jsdelivr.net/npm/eruda"
+  document.head.append(script)
+  script.onload = () => eruda.init()
+}

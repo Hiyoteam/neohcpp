@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <title>hack.chat</title>
 
@@ -26,11 +26,29 @@
     </div>
   </footer>
 
+  <nav id="sidebar">
+    <div id="sidebar-content" class="hidden">
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+          <h4 tr>Settings</h4>
+        </div>
+        <a id="sidebar-close">x</a>
+      </div>
+      <hr>
+      <div id="users-div">
+        <h4>Users online</h4>
+        <p>(Click user to invite; right click to ignore.)</p>
+        <ul id="users"></ul>
+      </div>
+    </div>
+  </nav>
+
   <script src="global.js"></script>
   <script src="utils.js"></script>
   <script src="elements.js"></script>
   <script type="module" src="client.js"></script>
   <script type="module" src="index.js"></script>
+  <script type="module" src="sidebar.js"></script>
   <script type="module" src="window.js"></script>
 </body>
 

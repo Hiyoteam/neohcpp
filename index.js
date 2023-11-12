@@ -23,11 +23,12 @@ input.addEventListener('keydown', inputActionsHandler)
 if (myChannel) {
   await engine.connect()
 
-  myNick = prompt("Nickname:")
+  myNick = prompt("Nickname:", localStorageGet("myNick"))
 
   if (!myNick) {
     engine.close()
   } else {
+    localStorageSet("myNick", myNick)
     await engine.join(myChannel, myNick)
   }
 } else {

@@ -11,3 +11,14 @@ After several trials to create the next generation of hack.chat web client, this
 This project is powered by Vite.
 
 本项目由Vite驱动。
+
+## TODOs
+
+- [x] LocalStorage Save Nick
+- [ ] Reply and @ Mention
+- [ ] FrontPage
+- [ ] Sidebar
+- [ ] Config Manager
+
+- [ ] Plugin API
+- [ ] More Flexible CSS

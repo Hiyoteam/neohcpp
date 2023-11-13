@@ -15,9 +15,9 @@ This project is powered by Vite.
 ## TODOs
 
 - [x] LocalStorage Save Nick
-- [ ] Render Nick Color
-- [ ] Reply and @ Mention
-- [ ] Favicon
+- [x] Render Nick Color
+- [x] Reply and @ Mention
+- [x] Favicon
 - [ ] FrontPage
 - [ ] Sidebar
 - [ ] Config Manager

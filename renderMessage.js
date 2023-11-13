@@ -25,7 +25,13 @@ const renderMarkdown = (markup, { mode = RenderModes.default } = {}) => {
     return md.render(markup)
   } else if (mode === RenderModes.allowHTML) {
     md.set({ html: true })
-    let result = md.render(markup)
+    let result
+    try {
+      result = md.render(markup)
+    } catch (e) {
+      md.set({ html: false })
+      throw e
+    }
     md.set({ html: false })
     return result
   } else if (mode === RenderModes.onlyHTML) {

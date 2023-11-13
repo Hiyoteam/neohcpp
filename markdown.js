@@ -16,7 +16,7 @@ const getDomain = (link) => (
  * @returns {boolean}
  */
 const isWhiteListed = (link) => {
-  return imgHostWhitelist.indexOf(getDomain(link)) !== -1
+  return imgHostWhitelist.includes(link)
 }
 
 const createRenderer = () => {

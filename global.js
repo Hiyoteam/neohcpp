@@ -117,6 +117,7 @@ const sidebar = $id("sidebar")
 let isDebug
 
 if (location.hash === '#debug') {
+  isDebug = true
   const script = document.createElement('script')
   script.src="https://cdn.jsdelivr.net/npm/eruda"
   document.head.append(script)

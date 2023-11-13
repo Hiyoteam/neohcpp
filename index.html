@@ -2,13 +2,15 @@
 <html lang="en-US">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <title>hack.chat</title>
 
   <link rel="stylesheet" href="style.css">
   <link id="scheme-link" rel="stylesheet" href="schemes/atelier-dune.css">
-  
+  <link rel="stylesheet" href="hybrid.css">
+
   <link rel="shortcut icon" type="image/png" href="favicon.png">
 </head>
 
@@ -40,18 +42,20 @@
       </div>
     </div>
   </nav>
-  
+
   <audio class="hidden" id="notify-sound" preload="auto" src="audio/notify.mp3">
     <source src="audio/notify.mp3" type="audio/ogg">
   </audio>
 
+
   <script src="global.js"></script>
-  <script src="utils.js"></script>
-  <script src="elements.js"></script>
+
   <script type="module" src="client.js"></script>
-  <script type="module" src="index.js"></script>
   <script type="module" src="sidebar.js"></script>
+
   <script type="module" src="window.js"></script>
+
+  <script type="module" src="index.js"></script>
 </body>
 
 </html>

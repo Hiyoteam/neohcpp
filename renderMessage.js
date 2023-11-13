@@ -3,6 +3,8 @@ import { insertAtCursor } from "./ui_utils"
 
 const md = createRenderer()
 
+const mdHtml = createRenderer({ html: true })
+
 const RenderModes = Object.freeze({
   default: "default",
   allowHTML: "allowHTML",
@@ -24,16 +26,7 @@ const renderMarkdown = (markup, { mode = RenderModes.default } = {}) => {
   if (mode === RenderModes.default) {
     return md.render(markup)
   } else if (mode === RenderModes.allowHTML) {
-    md.set({ html: true })
-    let result
-    try {
-      result = md.render(markup)
-    } catch (e) {
-      md.set({ html: false })
-      throw e
-    }
-    md.set({ html: false })
-    return result
+    return mdHtml.render(markup)
   } else if (mode === RenderModes.onlyHTML) {
     return markup
   } else if (mode === RenderModes.plainText) {

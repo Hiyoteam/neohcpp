@@ -5,6 +5,7 @@
 import { updateInputSize, updateTitle } from "./ui_utils"
 import { inputActionsHandler } from "./input"
 import { pushMessage } from "./client"
+import { frontPage } from "./frontpage"
 
 myChannel = location.search.replace(/^\?/, "")
 
@@ -41,5 +42,6 @@ if (myChannel) {
     await engine.join(myChannel, myNick)
   }
 } else {
-  pushMessage({ text: "Temporary Frontpage" })
+  footer.classList.add('hidden')
+  pushMessage({ text: frontPage() }, { renderMode: "allowHTML" })
 }

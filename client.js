@@ -30,7 +30,7 @@ const pushMessage = (args, { target, renderMode } = {}) => {
 
   messagesEl.appendChild(messageEl)
 
-  if (wasAtBottom) {
+  if (myChannel !== '' && wasAtBottom) {
     scrollToBottom()
   }
 }
@@ -54,7 +54,7 @@ engine.on(Commands.warn, (args) => {
 engine.on(Commands.onlineSet, (args) => {
   const nicksHTML = args.nicks.map((nick) => {
     if (nick.match(/^_+$/)) {
-      return nick // such nicknames made up of only underlines will be rendered into a horizontal rule. 
+      return nick // such nicknames made up of only underlines will be rendered into a horizontal rule.
     }
     const div = document.createElement('div')
     div.innerHTML = renderMarkdown(nick)

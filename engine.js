@@ -24,7 +24,8 @@ import EventEmitter from 'eventemitter3'
  * @property {string} [trip]
  * @property {string} [from]
  * 
- * @property {string[]} [nicks]
+ * @property {string[]?} [nicks]
+ * @property {User[]?} [users]
  * 
  * @property {string?} [time]
  * @property {string?} [color]

@@ -20,6 +20,9 @@ dependencies:
   remarkable-katex:
     specifier: ^1.2.1
     version: 1.2.1
+  sinuous:
+    specifier: ^0.32.1
+    version: 0.32.1
 
 devDependencies:
   vite:
@@ -336,6 +339,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /sinuous@0.32.1:
+    resolution: {integrity: sha512-kJihtBR43iiSMpeIb05gq1wC31UKtS4NlQ8wMcmMunOBfTxrv38EfHoebvml1Kq0mVh+n+nDbD5WvnZoYpigdg==}
+    dev: false
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}

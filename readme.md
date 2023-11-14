@@ -18,7 +18,7 @@ This project is powered by Vite.
 - [x] Render Nick Color
 - [x] Reply and @ Mention
 - [x] Favicon
-- [ ] FrontPage
+- [x] FrontPage
 - [ ] Sidebar
 - [ ] Config Manager
 

@@ -39,6 +39,8 @@ if (myChannel) {
     engine.close()
   } else {
     localStorageSet("myNick", myNick)
+
+    onlineUsers = []
     await engine.join(myChannel, myNick)
   }
 } else {

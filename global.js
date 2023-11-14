@@ -15,15 +15,31 @@
 
 /**
  * @typedef RenderMode
- * @type {import("./renderMessage").RenderMode}
+ * @type {import("./render-message").RenderMode}
  */
 
 /**
  * @typedef MsgInfo
  * @type {{
- *  id: number,
- *  args: Msg,
- *  element: HTMLElement?
+ * id: number,
+ * args: Msg,
+ * element: HTMLElement?
+ * }}
+ */
+
+/**
+ * @typedef User
+ * @type {{
+ * channel: string,
+ * color: string|false,
+ * hash: string,
+ * isBot: boolean,
+ * isme: boolean,
+ * level: number,
+ * nick: string,
+ * trip: string,
+ * uType: string,
+ * userid: number
  * }}
  */
 
@@ -42,7 +58,7 @@ let engine
 /** @type {string[]?} */
 let imgHostWhitelist
 
-/** @type {string[]?} */
+/** @type {User[]?} */
 let onlineUsers
 
 let allowImages = false

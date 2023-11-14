@@ -3,7 +3,7 @@
  */
 
 import { Commands, Engine, Events } from "./engine"
-import { renderMessage, renderMarkdown } from "./renderMessage"
+import { renderMessage, renderMarkdown } from "./render-message"
 
 engine = new Engine("wss://hack.chat/chat-ws")
 
@@ -52,10 +52,12 @@ engine.on(Commands.warn, (args) => {
 })
 
 engine.on(Commands.onlineAdd, (args) => {
+  onlineUsers.add(args)
   pushMessage({ ...args, 'nick': '*', text: `${args.nick} joined` })
 })
 
 engine.on(Commands.onlineAdd, (args) => {
+  onlineUsers = onlineUsers.filter(user => user.nick !== args.nick)
   pushMessage({ ...args, 'nick': '*', text: `${args.nick} left` })
 })
 
@@ -118,6 +120,8 @@ engine.on(Commands.captcha, (args) => {
 })
 
 engine.on(Commands.onlineSet, (args) => {
+  onlineUsers = args.users
+
   const nicksHTML = args.nicks.map((nick) => {
     if (nick.match(/^_+$/)) {
       return nick // such nicknames made up of only underlines will be rendered into a horizontal rule.
@@ -128,6 +132,11 @@ engine.on(Commands.onlineSet, (args) => {
   })
 
   pushMessage({ nick: '*', "text": "Users online: " + nicksHTML.join(", ") }, { renderMode: "onlyHTML" })
+})
+
+engine.on(Commands.updateUser, (args) => {
+  let index = onlineUsers.findIndex(user => user.nick === args.nick)
+  onlineUsers[index] = { ...onlineUsers[index], ...args }
 })
 
 export { pushMessage }

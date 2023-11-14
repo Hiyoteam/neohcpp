@@ -1,6 +1,6 @@
-import { html, o } from 'sinuous'
-import { map } from 'sinuous/map'
-import { Commands } from './engine'
+import { html, o } from "sinuous"
+import { map } from "sinuous/map"
+import { Commands } from "./engine"
 
 engine.once(Commands.onlineSet, () => {
 

@@ -2,10 +2,10 @@
  * Entry of NeoHC++, sets up UI.
  */
 
-import { updateInputSize, updateTitle } from "./ui_utils"
-import { inputActionsHandler } from "./input"
-import { frontPage } from "./frontpage"
-import $ref from "./ref"
+import { updateInputSize, updateTitle } from "./ui_utils.js"
+import { inputActionsHandler } from "./input.js"
+import { frontPage } from "./frontpage.js"
+import $ref from "./ref.ts"
 
 myChannel = location.search.replace(/^\?/, "")
 

@@ -1,5 +1,5 @@
-import { createRenderer } from "./markdown"
-import { insertAtCursor } from "./ui_utils"
+import { createRenderer } from "./markdown.js"
+import { insertAtCursor } from "./ui_utils.js"
 
 const md = createRenderer()
 

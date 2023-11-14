@@ -2,8 +2,8 @@
  * Manages client states.
  */
 
-import { Commands, Engine, Events } from "./engine"
-import { renderMessage, renderMarkdown } from "./render-message"
+import { Commands, Engine, Events } from "./engine.js"
+import { renderMessage, renderMarkdown } from "./render-message.js"
 
 engine = new Engine("wss://hack.chat/chat-ws")
 

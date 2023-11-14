@@ -1,10 +1,10 @@
-import { Remarkable, utils } from 'remarkable'
+import { Remarkable, utils } from "remarkable"
 const { has, unescapeMd, replaceEntities, escapeHtml } = utils
-import { linkify } from 'remarkable/linkify'
-import hljs from 'highlight.js'
-import remarkableKatex from 'remarkable-katex'
+import { linkify } from "remarkable/linkify"
+import hljs from "highlight.js"
+import remarkableKatex from "remarkable-katex"
 
-import 'katex/dist/katex.css'
+import "katex/dist/katex.css"
 
 /**
  * @param {string} link

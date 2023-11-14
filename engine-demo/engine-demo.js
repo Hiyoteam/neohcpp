@@ -1,4 +1,4 @@
-import { Engine, Events } from '../engine'
+import { Engine, Events } from "../engine.js"
 
 const $id = document.getElementById.bind(document)
 

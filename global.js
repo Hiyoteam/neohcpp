@@ -56,12 +56,36 @@ const myNickName = () => myNick.split('#')[0]
 let engine
 
 /** @type {string[]?} */
-let imgHostWhitelist
+let imgHostWhitelist = [
+	'i.imgur.com',
+	'imgur.com',
+	'share.lyka.pro',
+	'cdn.discordapp.com',
+	'i.gyazo.com',
+	'img.thz.cool',
+	'i.loli.net', 's2.loli.net', //SM-MS图床
+	's1.ax1x.com', 's2.ax1x.com', 'z3.ax1x.com', 's4.ax1x.com', //路过图床
+	'i.postimg.cc', //postimages图床
+	'mrpig.eu.org', //慕容猪的图床
+	'gimg2.baidu.com', //百度
+	'files.catbox.moe', //catbox
+	'img.liyuv.top', //李鱼图床
+	location.hostname, // 允许我自己
+	'img.zhangsoft.cf', // 小张图床
+	'bed.paperee.repl.co', 'filebed.paperee.guru', // 纸片君ee的纸床
+	'imagebed.s3.bitiful.net', //Dr0让加的
+	'img1.imgtp.com', 'imgtp.com', // imgtp
+	'api.helloos.eu.org', // HelloOsMe's API
+	'cdn.luogu.com.cn', // luogu
+	'i.ibb.co', // imgbb
+	'picshack.net',
+	'hcimg.s3.bitiful.net', //24a's
+] // Some are copied from https://github.com/ZhangChat-Dev-Group/ZhangChat/
 
-/** @type {User[]?} */
-let onlineUsers
+/** @type {import('./$refjs').$ref<User[]>?} */
+let $onlineUsers
 
-let allowImages = false
+let allowImages = true
 
 let unread = 0
 
@@ -69,6 +93,14 @@ let globalId = 0
 
 /** @type {{[_:number]:MsgInfo}} */
 let messages = {}
+
+/**
+ * @param {Msg} args
+ * @param {object} options
+ * @param {HTMLElement?} options.target
+ * @param {RenderMode} options.renderMode
+ */
+let pushMessage = (args, { target, renderMode } = {}) => {}
 
 
 const isAtBottom = () => (

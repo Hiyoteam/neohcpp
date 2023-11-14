@@ -1,5 +1,4 @@
 import { updateInputSize } from "./ui_utils"
-import { pushMessage } from "./client"
 
 let lastSent = [""]
 let lastSentPos = 0
@@ -57,7 +56,7 @@ const inputActions = {
     if (index >= 1 && index === pos - 1 && text.slice(index - 1, pos).match(/^@@$/)) {
       autocompletedNick = true
       backspaceAtCursor(1)
-      insertAtCursor(onlineUsers.join(' @') + ' ')
+      insertAtCursor($onlineUsers.join(' @') + ' ')
     } else if (index >= 0 && index === pos - 1) {
       autocompletedNick = true
       if (lastMentioned.length > 0) {
@@ -70,10 +69,10 @@ const inputActions = {
       const stub = text.substring(index + 1, pos)
 
       // Search for nick beginning with stub
-      let nicks = onlineUsers.filter(nick => nick.indexOf(stub) === 0)
+      let nicks = $onlineUsers.filter(nick => nick.indexOf(stub) === 0)
 
       if (nicks.length === 0) {
-        nicks = onlineUsers.filter(
+        nicks = $onlineUsers.filter(
           nick => nick.toLowerCase().indexOf(stub.toLowerCase()) === 0
         )
       }

@@ -1,7 +1,4 @@
-import { pushMessage } from "./client";
-import { renderMarkdown, renderMessage } from "./renderMessage";
-
-window.pushMessage = pushMessage
+import { renderMarkdown, renderMessage } from "./render-message"
 
 window.renderMarkdown = renderMarkdown
 window.renderMessage = renderMessage

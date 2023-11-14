@@ -4,8 +4,8 @@
 
 import { updateInputSize, updateTitle } from "./ui_utils"
 import { inputActionsHandler } from "./input"
-import { pushMessage } from "./client"
 import { frontPage } from "./frontpage"
+import $ref from "./ref"
 
 myChannel = location.search.replace(/^\?/, "")
 
@@ -40,7 +40,7 @@ if (myChannel) {
   } else {
     localStorageSet("myNick", myNick)
 
-    onlineUsers = []
+    $onlineUsers = new $ref([])
     await engine.join(myChannel, myNick)
   }
 } else {

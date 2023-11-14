@@ -1,4 +1,4 @@
-import { updateInputSize } from "./ui_utils.js"
+import { updateInputSize } from "./ui-utils.js"
 
 let lastSent = [""]
 let lastSentPos = 0

@@ -1,6 +1,6 @@
 import { html, o } from "sinuous"
 import { map } from "sinuous/map"
-import { Commands } from "./engine"
+import { Commands } from "./engine.js"
 
 engine.once(Commands.onlineSet, () => {
 
@@ -9,15 +9,13 @@ engine.once(Commands.onlineSet, () => {
 
   $onlineUsers.setter = () => onlineUsersO($onlineUsers.$)
 
-  $id('users-wrap').appendChild(html`
-    <ul>
-      ${map(
-        onlineUsersO,
-        (/**@type {User}*/user) => html`<li><a>${user.nick}</a>${
-          user.trip ? html`<span class="trip"> ${user.trip}</span>` : ''
-        }</li>`
-      )}
-    </ul>
-  `)
+  usersEl.appendChild(html`
+    ${map(
+      onlineUsersO,
+      (/**@type {User}*/user) => html`<li><a>${user.nick}</a>${
+        user.trip ? html`<span class="trip"> ${user.trip}</span>` : ''
+      }</li>`
+    )}
+  `, )
 
 })

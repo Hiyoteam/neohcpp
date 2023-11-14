@@ -2,7 +2,7 @@
  * Entry of NeoHC++, sets up UI.
  */
 
-import { updateInputSize, updateTitle } from "./ui_utils.js"
+import { updateInputSize, updateTitle } from "./ui-utils.js"
 import { inputActionsHandler } from "./input.js"
 import { frontPage } from "./frontpage.js"
 import $ref from "./ref.ts"

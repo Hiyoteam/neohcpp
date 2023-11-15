@@ -45,18 +45,18 @@
 
 
 /** @type {string?} */
-var myChannel
+let myChannel
 
 /** @type {string?} */
-var myNick
+let myNick
 
 const myNickName = () => myNick.split('#')[0]
 
 /** @type {import('./engine.js').Engine?} */
-var engine
+let engine
 
 /** @type {string[]?} */
-var imgHostWhitelist = [
+let imgHostWhitelist = [
 	'i.imgur.com',
 	'imgur.com',
 	'share.lyka.pro',
@@ -83,16 +83,16 @@ var imgHostWhitelist = [
 ] // Some are copied from https://github.com/ZhangChat-Dev-Group/ZhangChat/
 
 /** @type {import('./ref.ts').$ref<User[]>?} */
-var $onlineUsers
+let $onlineUsers
 
-var allowImages = true
+let allowImages = true
 
-var unread = 0
+let unread = 0
 
-var globalId = 0
+let globalId = 0
 
 /** @type {{[_:number]:MsgInfo}} */
-var messages = {}
+let messages = {}
 
 /**
  * @param {Msg} args
@@ -100,7 +100,7 @@ var messages = {}
  * @param {HTMLElement?} options.target
  * @param {RenderMode} options.renderMode
  */
-var pushMessage = (args, { target, renderMode } = {}) => { throw new Error("Not implemented") }
+var pushMessage = (args, { target, renderMode } = {}) => { if (false) return; throw new Error("Should have been implemented in client.js") }
 
 
 const isAtBottom = () => (
@@ -162,10 +162,9 @@ const usersEl = $id("users")
 /** @type {HTMLDivElement} */
 const sidebar = $id("sidebar")
 
-var isDebug
+const isDebug = location.hash === '#debug'
 
-if (location.hash === '#debug') {
-  isDebug = true
+if (isDebug) {
   const script = document.createElement('script')
   script.src="https://cdn.jsdelivr.net/npm/eruda"
   document.head.append(script)

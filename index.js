@@ -7,7 +7,7 @@ import { inputActionsHandler } from "./input.js"
 import { frontPage } from "./frontpage.js"
 import $ref from "./ref.ts"
 
-myChannel = location.search.replace(/^\?/, "")
+myChannel = location.search.replace(/^\?/, "").split('@', 1)[0]
 
 window.addEventListener("scroll", () => {
   if (isAtBottom()) {

@@ -45,18 +45,18 @@
 
 
 /** @type {string?} */
-let myChannel
+var myChannel
 
 /** @type {string?} */
-let myNick
+var myNick
 
 const myNickName = () => myNick.split('#')[0]
 
 /** @type {import('./engine.js').Engine?} */
-let engine
+var engine
 
 /** @type {string[]?} */
-let imgHostWhitelist = [
+var imgHostWhitelist = [
 	'i.imgur.com',
 	'imgur.com',
 	'share.lyka.pro',
@@ -83,16 +83,16 @@ let imgHostWhitelist = [
 ] // Some are copied from https://github.com/ZhangChat-Dev-Group/ZhangChat/
 
 /** @type {import('./ref.ts').$ref<User[]>?} */
-let $onlineUsers
+var $onlineUsers
 
-let allowImages = true
+var allowImages = true
 
-let unread = 0
+var unread = 0
 
-let globalId = 0
+var globalId = 0
 
 /** @type {{[_:number]:MsgInfo}} */
-let messages = {}
+var messages = {}
 
 /**
  * @param {Msg} args
@@ -100,7 +100,7 @@ let messages = {}
  * @param {HTMLElement?} options.target
  * @param {RenderMode} options.renderMode
  */
-let pushMessage = (args, { target, renderMode } = {}) => {}
+var pushMessage = (args, { target, renderMode } = {}) => { throw new Error("Not implemented") }
 
 
 const isAtBottom = () => (
@@ -162,7 +162,7 @@ const usersEl = $id("users")
 /** @type {HTMLDivElement} */
 const sidebar = $id("sidebar")
 
-let isDebug
+var isDebug
 
 if (location.hash === '#debug') {
   isDebug = true

@@ -5,7 +5,7 @@
 import { Commands, Engine, Events } from "./engine.js"
 import { renderMessage, renderMarkdown } from "./render-message.js"
 
-engine = new Engine("wss://hack.chat/chat-ws")
+engine = new Engine(location.search.split('@', 2).length > 1 ? location.search.split('@', 2)[1] : "wss://hack.chat/chat-ws")
 
 /**
  * @param {Msg} args

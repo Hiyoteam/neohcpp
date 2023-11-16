@@ -35,7 +35,7 @@ const pushMessage = (args, { target, renderMode } = {}) => {
   }
 }
 
-window.pushMessage = pushMessage
+globalThis.pushMessage = pushMessage
 
 engine.on(Commands.chat, (/**@type {Msg}*/args) => {
   pushMessage(args)

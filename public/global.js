@@ -1,21 +1,21 @@
 /**
  * @typedef Msg
- * @type {import('./engine.js').Msg}
+ * @type {import('../engine.js').Msg}
  */
 
 /**
  * @typedef Payload
- * @type {import('./engine.js').Payload}
+ * @type {import('../engine.js').Payload}
  */
 
 /**
  * @typedef Callback
- * @type {import('./engine.js').Callback}
+ * @type {import('../engine.js').Callback}
  */
 
 /**
  * @typedef RenderMode
- * @type {import('./render-message.js').RenderMode}
+ * @type {import('../render-message.js').RenderMode}
  */
 
 /**
@@ -52,7 +52,7 @@ let myNick
 
 const myNickName = () => myNick.split('#')[0]
 
-/** @type {import('./engine.js').Engine?} */
+/** @type {import('../engine.js').Engine?} */
 let engine
 
 /** @type {string[]?} */
@@ -82,7 +82,7 @@ let imgHostWhitelist = [
 	'hcimg.s3.bitiful.net', //24a's
 ] // Some are copied from https://github.com/ZhangChat-Dev-Group/ZhangChat/
 
-/** @type {import('./ref.ts').$ref<User[]>?} */
+/** @type {import('../ref.ts').$ref<User[]>?} */
 let $onlineUsers
 
 let allowImages = true

@@ -30,20 +30,22 @@ document.addEventListener("keydown", (e) => {
   }
 })
 
-if (myChannel) {
-  await engine.connect()
+;(async () => {
+  if (myChannel) {
+    await engine.connect()
 
-  myNick = prompt("Nickname:", localStorageGet("myNick"))
+    myNick = prompt("Nickname:", localStorageGet("myNick"))
 
-  if (!myNick) {
-    engine.close()
+    if (!myNick) {
+      engine.close()
+    } else {
+      localStorageSet("myNick", myNick)
+
+      $onlineUsers = new $ref([])
+      await engine.join(myChannel, myNick)
+    }
   } else {
-    localStorageSet("myNick", myNick)
-
-    $onlineUsers = new $ref([])
-    await engine.join(myChannel, myNick)
+    footer.classList.add('hidden')
+    pushMessage({ text: frontPage() }, { renderMode: "allowHTML" })
   }
-} else {
-  footer.classList.add('hidden')
-  pushMessage({ text: frontPage() }, { renderMode: "allowHTML" })
-}
+})()

@@ -12,9 +12,14 @@ engine.once(Commands.onlineSet, () => {
   usersEl.appendChild(html`
     ${map(
       onlineUsersO,
-      (/**@type {User}*/user) => html`<li><a>${user.nick}</a>${
-        user.trip ? html`<span class="trip"> ${user.trip}</span>` : ''
-      }</li>`
+      (/**@type {User}*/user) => html`
+        <li>
+          <a title=${user.hash}>${user.nick}</a>
+          ${
+            user.trip ?
+            html`<span class="trip"> ${user.trip}</span>` : ''
+          }
+        </li>`
     )}
   `, )
 

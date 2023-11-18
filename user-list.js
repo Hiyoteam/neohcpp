@@ -16,8 +16,8 @@ engine.once(Commands.onlineSet, () => {
         <li>
           <a title=${user.hash}>${user.nick}</a>
           ${
-            user.trip ?
-            html`<span class="trip"> ${user.trip}</span>` : ''
+            user.trip &&
+            html`<span class="trip"> ${user.trip}</span>`
           }
         </li>`
     )}

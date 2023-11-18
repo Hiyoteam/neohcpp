@@ -16,7 +16,7 @@
     "highlight.js": "^11.8.0",
     "katex": "^0.16.8",
     "remarkable": "^2.0.1",
-    "remarkable-katex": "^1.2.1",
+    "remarkable-katex": "./remarkable-katex",
     "sinuous": "^0.32.1"
   }
 }

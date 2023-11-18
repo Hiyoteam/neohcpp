@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && esbuild --minify public/global.js --outfile=dist/global.js --target=es6",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "esbuild": "^0.19.5",
     "vite": "^4.4.5"
   },
   "dependencies": {

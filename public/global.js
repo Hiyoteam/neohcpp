@@ -146,6 +146,14 @@ const localStorageSet = (key, value) => {
   window.localStorage[key] = JSON.stringify(value)
 }
 
+/**
+ * @param {string} link
+ * @returns {boolean}
+ */
+let verifyLink = (link) => {
+	if (false) return true; throw new Error("Should have been implemented")
+}
+
 
 /** @type {HTMLTextAreaElement} */
 const input = $id("chatinput")

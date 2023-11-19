@@ -22,6 +22,17 @@ const isWhiteListed = (link) => {
   return imgHostWhitelist.includes(getDomain(link))
 }
 
+
+verifyLink = (link) => {
+  let linkHref = escapeHtml(replaceEntities(link.href))
+  if (linkHref !== link.innerHTML) {
+    return confirm(`Warning, please verify this is where you want to go: ${linkHref}`)
+  }
+
+  return true
+}
+
+
 /**
  * @param {Partial<Remarkable.Options>} options
  */
@@ -38,22 +49,22 @@ const createRenderer = (options) => {
     doHighlight: true,
 
     /**
-     * @param {string} str
+     * @param {string} code
      * @param {string} lang
      */
-    highlight(str, lang) {
+    highlight(code, lang) {
       if (!this.doHighlight) {
         return ''
       }
 
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(lang, str).value
+          return hljs.highlight(code, { language: lang }).value
         } catch (_) { }
       }
 
       try {
-        return hljs.highlightAuto(str).value
+        return hljs.highlightAuto(code).value
       } catch (_) { }
 
       return ''
@@ -84,7 +95,7 @@ const createRenderer = (options) => {
     }
 
     if (options.highlight) {
-      highlighted = options.highlight.apply(options.highlight, [token.content].concat(fences))
+      highlighted = options.highlight.apply(options, [token.content].concat(fences))
         || escapeHtml(token.content)
     } else {
       highlighted = escapeHtml(token.content)

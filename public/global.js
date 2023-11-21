@@ -89,10 +89,8 @@ let allowImages = true
 
 let unread = 0
 
-let globalId = 0
-
-/** @type {{[_:number]:MsgInfo}} */
-let messages = {}
+/** @type {MsgInfo[]} */
+let messages = []
 
 /**
  * @param {Msg} args

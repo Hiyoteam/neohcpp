@@ -119,7 +119,7 @@ const renderMessage = (args, { renderMode = RenderModes.default } = {}) => {
       // Cut overlong lines
       if (lines.length >= 8) {
         lines = lines.slice(0, 8)
-        overlongText = true
+        isOverLong = true
       }
 
       for (let replyLine of lines) {

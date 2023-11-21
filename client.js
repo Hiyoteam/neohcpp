@@ -14,8 +14,7 @@ engine = new Engine(location.search.split('@', 2).length > 1 ? location.search.s
  * @param {RenderMode} options.renderMode
  */
 const pushMessage = (args, { target, renderMode } = {}) => {
-  let id = globalId
-  globalId++
+  let id = messages.length
 
   messages[id] = {
     id,
@@ -58,7 +57,7 @@ engine.on(Commands.onlineAdd, (/**@type {Msg}*/args) => {
   pushMessage({ ...args, 'nick': '*', text: `${args.nick} joined` })
 })
 
-engine.on(Commands.onlineAdd, (/**@type {Msg}*/args) => {
+engine.on(Commands.onlineRemove, (/**@type {Msg}*/args) => {
   $onlineUsers.$ = $onlineUsers.$.filter(user => user.nick !== args.nick)
   pushMessage({ ...args, 'nick': '*', text: `${args.nick} left` })
 })
@@ -90,7 +89,7 @@ engine.on(Commands.captcha, (/**@type {Msg}*/args) => {
   svgEl.style.width = '100%'
 
   // In order to make 40em work right.
-  svgEl.style.fontSize = `${$id('messages').clientWidth / lines[0].length * 1.5}px`
+  svgEl.style.fontSize = `${messageEl.clientWidth / lines[0].length * 1.5}px`
   // Captcha text is about 41 lines.
   svgEl.style.height = '41em'
 
@@ -104,7 +103,7 @@ engine.on(Commands.captcha, (/**@type {Msg}*/args) => {
     textEl.setAttribute('y', `${i + 1}em`)
 
     // Captcha text shouldn't overflow #messages element, so I divide the width of the messages container with the overvalued length of each line in order to get an undervalued max width of each character, and than multiply it by 2 (The overvalued aspect ratio of a character) because the font-size attribute means the height of a character.
-    textEl.setAttribute('font-size', `${$id('messages').clientWidth / lines[0].length * 1.5}px`)
+    textEl.setAttribute('font-size', `${messageEl.clientWidth / lines[0].length * 1.5}px`)
     textEl.setAttribute('fill', 'white')
 
     // Preserve spaces.

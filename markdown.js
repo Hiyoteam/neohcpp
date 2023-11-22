@@ -10,9 +10,13 @@ import "katex/dist/katex.css"
  * @param {string} link
  * @returns {string}
  */
-const getDomain = (link) => (
-  new URL(link).hostname
-)
+const getDomain = (link) => {
+  try {
+    return new URL(link)?.hostname
+  } catch {
+    return ''
+  }
+}
 
 /**
  * @param {string} link
